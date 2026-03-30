@@ -261,33 +261,26 @@
             background: rgba(20, 20, 32, 0.95);
             backdrop-filter: blur(16px);
             border-bottom: 1px solid var(--border);
-            padding: 10px 20px;
-            display: flex; align-items: center; gap: 6px;
-            overflow-x: auto; white-space: nowrap;
-            scrollbar-width: none;
+            padding: 12px 20px;
+            display: flex; align-items: center; justify-content: center; gap: 8px;
+            flex-wrap: wrap;
         }
-        .sticky-nav::-webkit-scrollbar { display: none; }
         .sticky-nav a {
-            display: inline-flex; align-items: center; gap: 4px;
+            display: inline-flex; align-items: center;
             background: var(--surface); color: var(--text-muted);
-            padding: 6px 14px; border-radius: 20px;
-            font-size: 0.8em; font-weight: 500;
+            padding: 8px 18px; border-radius: 20px;
+            font-size: 0.85em; font-weight: 500;
             text-decoration: none; border: 1px solid var(--border);
-            transition: all 0.2s; flex-shrink: 0;
+            transition: all 0.2s;
         }
         .sticky-nav a:hover { background: var(--surface-2); color: var(--text); border-color: var(--accent); }
         .sticky-nav a.nav-highlight {
             background: var(--accent-soft); border-color: rgba(124,106,239,0.3); color: var(--accent);
         }
-        .sticky-nav .nav-label {
-            color: var(--text-muted); font-size: 0.75em; font-weight: 600;
-            text-transform: uppercase; letter-spacing: 0.06em;
-            margin-right: 4px; flex-shrink: 0;
-        }
 
         @media (max-width: 600px) {
-            .sticky-nav { padding: 8px 12px; gap: 4px; }
-            .sticky-nav a { padding: 6px 12px; font-size: 0.75em; }
+            .sticky-nav { padding: 10px 12px; gap: 6px; }
+            .sticky-nav a { padding: 7px 14px; font-size: 0.78em; }
             .hero h1 { font-size: 1.8em; }
             .hero { padding: 48px 20px 40px; }
             .section { padding: 24px 18px; }
@@ -438,20 +431,13 @@
 
 <!-- ===== STICKY NAV ===== -->
 <div class="sticky-nav">
-    <span class="nav-label">Jump to:</span>
-    <a href="#what-is-vibe">🧠 What Is It</a>
-    <a href="#step-1" class="nav-highlight">1 Download</a>
-    <a href="#step-2" class="nav-highlight">2 Copilot</a>
-    <a href="#step-3" class="nav-highlight">3 Make It Yours</a>
-    <a href="#step-4" class="nav-highlight">4 Talk to AI</a>
-    <a href="#chat-superpower">💬 Chat = Superpower</a>
-    <a href="#what-to-build">🏗️ What to Build</a>
-    <a href="#challenge" class="nav-highlight">⏱️ 20-Min Challenge</a>
-    <a href="#nd-brains">🧠 ND Brains</a>
-    <a href="#style-builder">✨ Style Profile</a>
-    <a href="#prompts">📋 Prompts</a>
-    <a href="#dont-panic">😅 Don't Panic</a>
-    <a href="#scary-words">📖 Translations</a>
+    <a href="#step-1" class="nav-highlight">Get Started</a>
+    <a href="#chat-superpower">Chat = Superpower</a>
+    <a href="#what-to-build">What to Build</a>
+    <a href="#challenge" class="nav-highlight">20-Min Challenge</a>
+    <a href="#style-builder">Style Profile</a>
+    <a href="#nd-brains">ND Brains</a>
+    <a href="#dont-panic">Help</a>
 </div>
 
 <div class="container">
