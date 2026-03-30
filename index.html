@@ -1,0 +1,1523 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vibe Coding Cheat Sheet — Build Things With AI, No Coding Required</title>
+    <meta name="description" content="The first AI guide designed for how your brain works. Zero coding experience needed. Discover your AI brain type, build your first page in 20 minutes, and tell AI how you think.">
+    <meta name="keywords" content="vibe coding, learn to code with AI, AI for beginners, GitHub Copilot, VS Code, non-developer, neurodivergent, ADHD coding, AI brain type">
+    
+    <!-- Open Graph / Social Sharing -->
+    <meta property="og:title" content="The Power Behind AI: Your Brain — Vibe Coding Cheat Sheet">
+    <meta property="og:description" content="The first AI guide designed for how your brain works. Zero coding experience needed. Build your first page in 20 minutes.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://aka.ms/vibe-coding-cheat-sheet">
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="The Power Behind AI: Your Brain — Vibe Coding Cheat Sheet">
+    <meta name="twitter:description" content="Zero coding experience. 20 minutes. You just built something real. Discover your AI brain type.">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; scroll-padding-top: 60px; }
+        
+        :root {
+            --bg: #141420;
+            --surface: #1c1c2e;
+            --surface-2: #252540;
+            --border: #2e2e4a;
+            --text: #e4e4f0;
+            --text-muted: #9b9bb4;
+            --accent: #7c6aef;
+            --accent-soft: rgba(124, 106, 239, 0.12);
+            --accent-glow: rgba(124, 106, 239, 0.25);
+            --success: #34d399;
+            --success-soft: rgba(52, 211, 153, 0.12);
+            --warn: #fbbf24;
+            --warn-soft: rgba(251, 191, 36, 0.1);
+        }
+
+        /* ===== ACCESSIBILITY ===== */
+        .skip-link {
+            position: absolute; top: -100px; left: 16px;
+            background: var(--accent); color: white;
+            padding: 8px 16px; border-radius: 8px;
+            font-weight: 600; z-index: 1000;
+            transition: top 0.2s;
+        }
+        .skip-link:focus { top: 8px; }
+        *:focus-visible {
+            outline: 2px solid var(--accent);
+            outline-offset: 2px;
+            border-radius: 4px;
+        }
+
+        body {
+            font-family: 'Segoe UI', -apple-system, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.7;
+            padding: 0;
+            font-size: 16px;
+        }
+
+        .hero {
+            background: linear-gradient(160deg, #1a1a35 0%, #252050 50%, #1a1a35 100%);
+            padding: 72px 40px 64px;
+            text-align: center;
+            position: relative;
+            border-bottom: 1px solid var(--border);
+        }
+        .hero h1 {
+            font-size: 2.6em; color: white; margin-bottom: 12px;
+            font-weight: 800; letter-spacing: -0.5px;
+        }
+        .hero h1 span { color: var(--accent); }
+        .hero p { font-size: 1.2em; color: rgba(255,255,255,0.8); max-width: 540px; margin: 0 auto; }
+        .hero .subtitle {
+            font-size: 0.95em; color: rgba(255,255,255,0.5);
+            margin-top: 10px; font-style: italic;
+        }
+
+        .container { max-width: 780px; margin: 0 auto; padding: 40px 20px; }
+
+        .section {
+            background: var(--surface);
+            border-radius: 16px;
+            padding: 32px;
+            margin-bottom: 32px;
+            border: 1px solid var(--border);
+            box-shadow: 0 2px 12px rgba(0,0,0,0.2);
+        }
+
+        .section h2 {
+            font-size: 1.45em; color: var(--text);
+            margin-bottom: 16px; font-weight: 700;
+            display: flex; align-items: center; gap: 10px;
+            letter-spacing: -0.3px;
+        }
+
+        .section h3 { color: var(--text-muted); font-size: 1.05em; margin: 20px 0 10px 0; font-weight: 600; }
+
+        .step {
+            display: flex;
+            align-items: flex-start;
+            gap: 16px;
+            margin-bottom: 14px;
+            padding: 16px 18px;
+            background: var(--surface-2);
+            border-radius: 12px;
+            border: 1px solid transparent;
+            transition: border-color 0.2s;
+        }
+        .step:hover { border-color: var(--border); }
+        .step-number {
+            background: var(--accent);
+            color: white;
+            width: 34px; height: 34px;
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-weight: 700; font-size: 0.95em; flex-shrink: 0;
+        }
+        .step-content { flex: 1; }
+        .step-content strong { color: var(--text); display: block; margin-bottom: 3px; }
+        .step-content span { color: var(--text-muted); font-size: 0.93em; }
+
+        a { color: var(--accent); text-decoration: none; border-bottom: 1px dashed rgba(124,106,239,0.4); transition: all 0.2s; }
+        a:hover { border-bottom-color: var(--accent); }
+        .big-button {
+            display: inline-block; background: var(--accent); color: white !important;
+            padding: 14px 28px; border-radius: 12px; font-size: 1.05em; font-weight: 600;
+            border: none; margin: 8px 4px; text-decoration: none; cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .big-button:hover { transform: translateY(-2px); box-shadow: 0 6px 24px var(--accent-glow); }
+
+        .ext-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 12px; }
+        @media (max-width: 600px) { .ext-grid { grid-template-columns: 1fr; } }
+        .ext-card {
+            background: var(--surface-2); border-radius: 12px; padding: 16px;
+            display: flex; align-items: flex-start; gap: 12px;
+            border: 1px solid var(--border);
+        }
+        .ext-card .emoji { font-size: 1.6em; flex-shrink: 0; }
+        .ext-card .ext-name { font-weight: 600; color: var(--text); }
+        .ext-card .ext-desc { color: var(--text-muted); font-size: 0.88em; margin-top: 2px; }
+        .ext-card .ext-tag {
+            display: inline-block; background: var(--accent); color: white;
+            font-size: 0.68em; padding: 2px 8px; border-radius: 6px;
+            margin-top: 4px; font-weight: 600;
+        }
+        .ext-card .ext-tag.optional { background: var(--warn); color: #1a1a2e; }
+
+        .prompt-block {
+            background: var(--bg); border: 1px solid var(--border); border-radius: 12px;
+            padding: 18px; margin: 10px 0; position: relative;
+        }
+        .prompt-block .prompt-label {
+            position: absolute; top: -10px; left: 14px;
+            background: var(--accent); color: white;
+            font-size: 0.72em; font-weight: 700; padding: 2px 10px;
+            border-radius: 6px; text-transform: uppercase;
+        }
+        .prompt-block code {
+            color: var(--success); font-family: 'Cascadia Code', 'Consolas', monospace;
+            font-size: 0.93em; line-height: 1.7; white-space: pre-wrap;
+        }
+
+        kbd {
+            background: var(--surface-2); color: var(--text); padding: 3px 8px; border-radius: 5px;
+            font-size: 0.85em; font-family: 'Cascadia Code', 'Consolas', monospace;
+            border: 1px solid var(--border); box-shadow: 0 2px 0 var(--surface);
+        }
+        .shortcut-row {
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 10px 14px; background: var(--surface-2); border-radius: 10px; margin: 6px 0;
+            border: 1px solid transparent;
+        }
+        .shortcut-row:hover { border-color: var(--border); }
+        .shortcut-row .what { color: var(--text-muted); }
+
+        .callout {
+            background: var(--accent-soft); border: 1px solid rgba(124,106,239,0.25);
+            border-radius: 12px; padding: 18px 20px; margin: 16px 0;
+            display: flex; align-items: flex-start; gap: 12px;
+        }
+        .callout.tip { background: var(--success-soft); border-color: rgba(52,211,153,0.25); }
+        .callout.warning { background: var(--warn-soft); border-color: rgba(251,191,36,0.25); }
+        .callout .callout-emoji { font-size: 1.5em; flex-shrink: 0; }
+        .callout .callout-text { flex: 1; }
+        .callout .callout-text strong { color: var(--text); }
+
+        .vscode-map {
+            background: var(--surface-2); border-radius: 12px; padding: 24px;
+            margin: 16px 0; text-align: center; border: 1px solid var(--border);
+        }
+        .vscode-map .map-row { display: flex; justify-content: center; gap: 8px; margin: 6px 0; }
+        .map-box { background: var(--surface); padding: 10px 16px; border-radius: 8px; font-size: 0.9em; min-width: 120px; border: 1px solid var(--border); }
+        .map-box.highlight { background: var(--accent); color: white; font-weight: 600; border-color: var(--accent); }
+        .map-box.big { min-width: 300px; }
+        .map-label { color: var(--text-muted); font-size: 0.8em; margin: 2px 0; }
+
+        .builder-form { margin-top: 16px; }
+        .form-group { margin-bottom: 20px; }
+        .form-group label { display: block; color: var(--text); font-weight: 600; margin-bottom: 8px; font-size: 1.02em; }
+        .form-group .form-hint { color: var(--text-muted); font-size: 0.85em; margin-bottom: 8px; }
+        
+        .option-grid { display: flex; flex-wrap: wrap; gap: 8px; }
+        .option-btn {
+            background: var(--surface-2); border: 2px solid var(--border); border-radius: 10px;
+            padding: 10px 18px; color: var(--text-muted); cursor: pointer; font-size: 0.93em;
+            transition: all 0.2s; font-family: 'Segoe UI', sans-serif;
+        }
+        .option-btn:hover { border-color: var(--accent); color: var(--text); }
+        .option-btn.selected { border-color: var(--accent); background: var(--accent-soft); color: var(--accent); font-weight: 600; }
+        
+        input[type="text"], textarea {
+            width: 100%; padding: 12px 16px; background: var(--surface-2); border: 2px solid var(--border);
+            border-radius: 10px; color: var(--text); font-size: 1em; font-family: 'Segoe UI', sans-serif;
+            transition: border-color 0.2s;
+        }
+        input[type="text"]:focus, textarea:focus { outline: none; border-color: var(--accent); }
+        textarea { min-height: 80px; resize: vertical; }
+
+        .output-box {
+            background: var(--bg); border: 2px solid var(--accent); border-radius: 12px;
+            padding: 24px; margin-top: 20px; position: relative;
+        }
+        .output-box pre {
+            color: var(--success); font-family: 'Cascadia Code', 'Consolas', monospace;
+            font-size: 0.88em; line-height: 1.7; white-space: pre-wrap; max-height: 400px; overflow-y: auto;
+        }
+        .output-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }
+        .output-header h3 { color: var(--accent); margin: 0; }
+        .copy-btn {
+            background: var(--accent); color: white; border: none; padding: 8px 20px;
+            border-radius: 8px; cursor: pointer; font-weight: 600; font-size: 0.88em;
+            transition: all 0.2s; font-family: 'Segoe UI', sans-serif;
+        }
+        .copy-btn:hover { opacity: 0.9; transform: translateY(-1px); }
+        .copy-btn.copied { background: var(--success); }
+
+        .toast {
+            position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%) translateY(100px);
+            background: var(--success); color: #141420; padding: 14px 28px; border-radius: 12px;
+            font-weight: 600; z-index: 1000; transition: transform 0.3s ease;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+        }
+        .toast.show { transform: translateX(-50%) translateY(0); }
+
+        .footer {
+            text-align: center; padding: 48px 20px;
+            color: var(--text-muted); font-size: 0.9em;
+            border-top: 1px solid var(--border);
+        }
+        .footer a { color: var(--accent); }
+        .divider { height: 1px; background: var(--border); margin: 16px 0; }
+
+        /* ===== STICKY NAV ===== */
+        .sticky-nav {
+            position: sticky; top: 0; z-index: 100;
+            background: rgba(20, 20, 32, 0.95);
+            backdrop-filter: blur(16px);
+            border-bottom: 1px solid var(--border);
+            padding: 10px 20px;
+            display: flex; align-items: center; gap: 6px;
+            overflow-x: auto; white-space: nowrap;
+            scrollbar-width: none;
+        }
+        .sticky-nav::-webkit-scrollbar { display: none; }
+        .sticky-nav a {
+            display: inline-flex; align-items: center; gap: 4px;
+            background: var(--surface); color: var(--text-muted);
+            padding: 6px 14px; border-radius: 20px;
+            font-size: 0.8em; font-weight: 500;
+            text-decoration: none; border: 1px solid var(--border);
+            transition: all 0.2s; flex-shrink: 0;
+        }
+        .sticky-nav a:hover { background: var(--surface-2); color: var(--text); border-color: var(--accent); }
+        .sticky-nav a.nav-highlight {
+            background: var(--accent-soft); border-color: rgba(124,106,239,0.3); color: var(--accent);
+        }
+        .sticky-nav .nav-label {
+            color: var(--text-muted); font-size: 0.75em; font-weight: 600;
+            text-transform: uppercase; letter-spacing: 0.06em;
+            margin-right: 4px; flex-shrink: 0;
+        }
+
+        @media (max-width: 600px) {
+            .sticky-nav { padding: 8px 12px; gap: 4px; }
+            .sticky-nav a { padding: 6px 12px; font-size: 0.75em; }
+            .hero h1 { font-size: 1.8em; }
+            .hero { padding: 48px 20px 40px; }
+            .section { padding: 24px 18px; }
+        }
+
+        /* ===== AI BRAIN CARD ===== */
+        .brain-card-container { display: none; margin-top: 24px; }
+        .brain-card-container.visible { display: block; }
+        .brain-card {
+            background: linear-gradient(135deg, #1e1e2e 0%, #2a1f3d 50%, #1a2744 100%);
+            border: 2px solid #8b5cf6;
+            border-radius: 20px;
+            padding: 32px;
+            max-width: 480px;
+            margin: 0 auto;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 8px 40px rgba(139, 92, 246, 0.25);
+        }
+        .brain-card::before {
+            content: '';
+            position: absolute; top: -50%; right: -50%;
+            width: 200%; height: 200%;
+            background: radial-gradient(circle, rgba(139,92,246,0.08) 0%, transparent 60%);
+            pointer-events: none;
+        }
+        .brain-card .bc-header {
+            text-align: center; margin-bottom: 20px; position: relative;
+        }
+        .brain-card .bc-emoji { font-size: 3em; margin-bottom: 8px; }
+        .brain-card .bc-title {
+            font-size: 1.4em; font-weight: 800; color: #c4b5fd;
+            letter-spacing: -0.3px;
+        }
+        .brain-card .bc-subtitle {
+            font-size: 0.85em; color: #6c7086; margin-top: 2px;
+        }
+        .brain-card .bc-grid {
+            display: grid; grid-template-columns: 1fr 1fr; gap: 12px;
+            margin: 16px 0; position: relative;
+        }
+        .brain-card .bc-item {
+            background: rgba(69, 71, 90, 0.5);
+            border-radius: 12px; padding: 14px; text-align: center;
+        }
+        .brain-card .bc-label {
+            font-size: 0.7em; color: #6c7086; text-transform: uppercase;
+            letter-spacing: 0.08em; margin-bottom: 4px;
+        }
+        .brain-card .bc-value {
+            font-size: 0.95em; font-weight: 600; color: #cdd6f4;
+        }
+        .brain-card .bc-tag {
+            display: inline-block; background: rgba(139,92,246,0.2);
+            border: 1px solid rgba(139,92,246,0.4);
+            color: #c4b5fd; font-size: 0.78em; font-weight: 600;
+            padding: 4px 12px; border-radius: 20px; margin: 3px 2px;
+        }
+        .brain-card .bc-footer {
+            text-align: center; margin-top: 16px; position: relative;
+        }
+        .brain-card .bc-hashtag {
+            color: #89b4fa; font-size: 0.85em; font-weight: 600;
+        }
+        .bc-actions {
+            display: flex; gap: 8px; justify-content: center;
+            margin-top: 16px;
+        }
+        .bc-actions button {
+            padding: 10px 24px; border-radius: 10px; border: none;
+            font-weight: 600; font-size: 0.9em; cursor: pointer;
+            font-family: 'Segoe UI', sans-serif; transition: all 0.2s;
+        }
+        .bc-share-btn {
+            background: #8b5cf6; color: white;
+        }
+        .bc-share-btn:hover { background: #7c3aed; transform: translateY(-1px); }
+        .bc-download-btn {
+            background: #313244; color: #cdd6f4; border: 1px solid #585b70 !important;
+        }
+        .bc-download-btn:hover { background: #45475a; }
+
+        /* ===== 20 MIN CHALLENGE ===== */
+        .challenge-timer {
+            background: linear-gradient(135deg, var(--accent), #5c2d91);
+            color: white; font-size: 2.2em; font-weight: 900;
+            text-align: center; padding: 12px 24px;
+            border-radius: 14px; margin: 16px 0;
+            font-family: 'Cascadia Code', 'Consolas', monospace;
+            letter-spacing: 2px;
+        }
+        .challenge-step {
+            display: flex; align-items: flex-start; gap: 16px;
+            margin-bottom: 14px; padding: 18px;
+            background: var(--surface-2); border-radius: 12px;
+            border-left: 4px solid var(--border);
+            transition: all 0.3s;
+        }
+        .challenge-step.active { border-left-color: var(--accent); background: rgba(124,106,239,0.08); }
+        .challenge-step.done { border-left-color: var(--success); opacity: 0.7; }
+        .challenge-step .cs-check {
+            width: 32px; height: 32px; border-radius: 50%;
+            border: 2px solid var(--border); display: flex;
+            align-items: center; justify-content: center;
+            font-size: 1em; flex-shrink: 0; cursor: pointer;
+            transition: all 0.2s; background: transparent; color: transparent;
+        }
+        .challenge-step.done .cs-check {
+            background: var(--success); border-color: var(--success); color: white;
+        }
+        .confetti-overlay {
+            display: none; position: fixed; inset: 0;
+            z-index: 9999; pointer-events: none;
+            background: rgba(0,0,0,0.5);
+            justify-content: center; align-items: center;
+        }
+        .confetti-overlay.show { display: flex; pointer-events: auto; }
+        .confetti-box {
+            background: var(--surface); border: 2px solid var(--success);
+            border-radius: 20px; padding: 40px; text-align: center;
+            max-width: 500px; box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+            animation: popIn 0.4s ease;
+        }
+        @keyframes popIn {
+            0% { transform: scale(0.5); opacity: 0; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        @media print {
+            body { background: white; color: #333; }
+            .section { border: 1px solid #ddd; box-shadow: none; background: #f9f9f9; }
+            .hero { background: #0078d4 !important; }
+            .step { background: #f0f0f0; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- ACCESSIBILITY: Skip to content -->
+<a href="#what-is-vibe" class="skip-link">Skip to content</a>
+
+<!-- ===== HERO ===== -->
+<div class="hero">
+    <h1>Vibe Coding <span>Cheat Sheet</span></h1>
+    <p>From zero to building real things. No coding required.</p>
+    <div class="subtitle">The first AI guide designed for how your brain works.</div>
+</div>
+
+<!-- ===== STICKY NAV ===== -->
+<div class="sticky-nav">
+    <span class="nav-label">Jump to:</span>
+    <a href="#what-is-vibe">🧠 What Is It</a>
+    <a href="#step-1" class="nav-highlight">1 Download</a>
+    <a href="#step-2" class="nav-highlight">2 Copilot</a>
+    <a href="#step-3" class="nav-highlight">3 Make It Yours</a>
+    <a href="#step-4" class="nav-highlight">4 Talk to AI</a>
+    <a href="#chat-superpower">💬 Chat = Superpower</a>
+    <a href="#what-to-build">🏗️ What to Build</a>
+    <a href="#challenge" class="nav-highlight">⏱️ 20-Min Challenge</a>
+    <a href="#nd-brains">🧠 ND Brains</a>
+    <a href="#style-builder">✨ Style Profile</a>
+    <a href="#prompts">📋 Prompts</a>
+    <a href="#dont-panic">😅 Don't Panic</a>
+    <a href="#scary-words">📖 Translations</a>
+</div>
+
+<div class="container">
+
+    <!-- ===== BLOG BRIDGE ===== -->
+    <div class="callout" style="margin-bottom: 28px; background: rgba(92,45,145,0.2); border-color: rgba(92,45,145,0.4); border-radius: 16px; padding: 24px;">
+        <div class="callout-emoji" style="font-size: 2em;">🧠</div>
+        <div class="callout-text">
+            <strong style="font-size: 1.1em;">You're here because you believe your brain has ideas worth building.</strong><br>
+            <span style="color: #a6adc8;">This page is your step-by-step guide to turning those ideas into real things. No coding background needed. No judgment. Just you, a free app, and an AI that listens.</span>
+        </div>
+    </div>
+
+    <!-- ===== WHAT IS VIBE CODING ===== -->
+    <div class="section" id="what-is-vibe">
+        <h2>🧠 What Is Vibe Coding?</h2>
+        <p>Vibe coding is building software by <strong>describing what you want in plain English</strong> instead of writing code yourself. You talk to AI, it builds, you react, and together you create something real.</p>
+        
+        <div class="callout tip">
+            <div class="callout-emoji">💡</div>
+            <div class="callout-text">
+                <strong>You don't need to know how to code!</strong><br>
+                You need three things: a problem you want to solve, the ability to describe what you want, and a free app called VS Code with an AI assistant called GitHub Copilot.
+            </div>
+        </div>
+
+        <p style="margin-top: 16px;">Think of it like this:</p>
+        <div class="step" style="margin-top: 12px;">
+            <div class="step-number">1</div>
+            <div class="step-content">
+                <strong>You describe what you want</strong>
+                <span>"Build me a website that shows a list of team goals with checkboxes"</span>
+            </div>
+        </div>
+        <div class="step">
+            <div class="step-number">2</div>
+            <div class="step-content">
+                <strong>AI builds it</strong>
+                <span>It writes the code and shows you a working version</span>
+            </div>
+        </div>
+        <div class="step">
+            <div class="step-number">3</div>
+            <div class="step-content">
+                <strong>You react</strong>
+                <span>"Make the font bigger" / "Add a dark mode" / "Change the colors"</span>
+            </div>
+        </div>
+        <div class="step">
+            <div class="step-number">4</div>
+            <div class="step-content">
+                <strong>Repeat until it's perfect</strong>
+                <span>That's it. That's vibe coding. Your ideas become real things.</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== STEP 1: DOWNLOAD VS CODE ===== -->
+    <div class="section purple" id="step-1">
+        <h2>Step 1: Download VS Code (Free) <span style="font-size: 0.5em; color: #6c7086;">⏱️ ~2 minutes</span></h2>
+        <p style="margin-bottom: 16px;">VS Code is a <strong>free app</strong> from Microsoft where you build things. Think of it like a word processor, but instead of writing essays, you're creating websites, tools, and apps.</p>
+        
+        <div class="step">
+            <div class="step-number">1</div>
+            <div class="step-content">
+                <strong>Go to code.visualstudio.com</strong>
+                <span>Click the big download button. It works on Windows, Mac, and Linux. It's completely free.</span>
+            </div>
+        </div>
+
+        <div style="text-align:center; margin: 16px 0;">
+            <a href="https://code.visualstudio.com/" target="_blank" class="big-button">Download VS Code Free</a>
+        </div>
+
+        <div class="step">
+            <div class="step-number">2</div>
+            <div class="step-content">
+                <strong>Run the installer</strong>
+                <span>Double-click the downloaded file. Click "Next" on everything. Click "Install." Done!</span>
+            </div>
+        </div>
+        <div class="step">
+            <div class="step-number">3</div>
+            <div class="step-content">
+                <strong>Open VS Code</strong>
+                <span>Find "Visual Studio Code" in your Start menu (Windows) or Applications folder (Mac) and click it.</span>
+            </div>
+        </div>
+
+        <div class="callout warning">
+            <div class="callout-emoji">⚠️</div>
+            <div class="callout-text">
+                <strong>Don't confuse these!</strong><br>
+                <ul style="margin-top: 8px; padding-left: 20px; color: #a6adc8;">
+                    <li><strong style="color:#89b4fa;">VS Code</strong> (blue icon) — This is what you want! Free, lightweight, perfect for vibe coding.</li>
+                    <li><strong style="color:#f38ba8;">Visual Studio</strong> (purple icon) — Completely different app. Much bigger. Not what you need.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== STEP 2: GET COPILOT ===== -->
+    <div class="section green" id="step-2">
+        <h2>Step 2: Get GitHub Copilot (Your AI Partner) <span style="font-size: 0.5em; color: #6c7086;">⏱️ ~3 minutes</span></h2>
+        <p style="margin-bottom: 16px;">GitHub Copilot is the AI that lives inside VS Code. It's what turns your plain English into working code. You can start for free!</p>
+
+        <div class="step">
+            <div class="step-number">1</div>
+            <div class="step-content">
+                <strong>Create a free GitHub account</strong>
+                <span>Go to <a href="https://github.com/signup" target="_blank">github.com/signup</a> and create an account. It's free and takes 2 minutes.</span>
+            </div>
+        </div>
+        <div class="step">
+            <div class="step-number">2</div>
+            <div class="step-content">
+                <strong>Sign into VS Code with GitHub</strong>
+                <span>Click the person icon at the bottom-left of VS Code. Click "Sign in with GitHub." Log in with the account you just created.</span>
+            </div>
+        </div>
+        <div class="step">
+            <div class="step-number">3</div>
+            <div class="step-content">
+                <strong>Copilot activates automatically</strong>
+                <span>GitHub Copilot Free is included with every GitHub account. You get 2,000 code completions and 50 chat messages per month at no cost.</span>
+            </div>
+        </div>
+
+        <div class="callout tip">
+            <div class="callout-emoji">🎁</div>
+            <div class="callout-text">
+                <strong>Copilot Free includes everything you need to start!</strong><br>
+                50 chat messages per month, access to AI models, and code suggestions. If you need more, Copilot Pro is $10/month. But start free and see how it goes!
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== STEP 3: MAKE IT YOURS ===== -->
+    <div class="section pink" id="step-3">
+        <h2>Step 3: Make VS Code Feel Like Yours <span style="font-size: 0.5em; color: #6c7086;">⏱️ ~5 minutes</span></h2>
+        <p style="margin-bottom: 8px;">VS Code can look intimidating at first. But you can customize everything so it feels comfortable. Here's how to make it not scary:</p>
+
+        <h3>Change the Look</h3>
+        <div class="step">
+            <div class="step-number">🎨</div>
+            <div class="step-content">
+                <strong>Pick a theme you like</strong>
+                <span>Press <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>P</kbd> (or <kbd>Cmd</kbd> + <kbd>Shift</kbd> + <kbd>P</kbd> on Mac) and type "Color Theme." Browse until you find one that feels right. Try "One Dark Pro" or "GitHub Dark" for a clean dark look.</span>
+            </div>
+        </div>
+        <div class="step">
+            <div class="step-number">🔤</div>
+            <div class="step-content">
+                <strong>Make the text bigger</strong>
+                <span>Press <kbd>Ctrl</kbd> + <kbd>=</kbd> to zoom in. Press <kbd>Ctrl</kbd> + <kbd>-</kbd> to zoom out. Find a size that's comfortable for your eyes.</span>
+            </div>
+        </div>
+
+        <h3>Install These Extensions (Optional but Helpful)</h3>
+        <p style="margin-bottom: 12px; color: #a6adc8;">Extensions are like apps for VS Code. Click the puzzle piece icon on the left sidebar, search the name, and click "Install."</p>
+        <div class="ext-grid">
+            <div class="ext-card">
+                <div class="emoji">🌈</div>
+                <div>
+                    <div class="ext-name">Indent Rainbow</div>
+                    <div class="ext-desc">Color-codes your lines so everything is easier to read</div>
+                    <div class="ext-tag">RECOMMENDED</div>
+                </div>
+            </div>
+            <div class="ext-card">
+                <div class="emoji">🔴</div>
+                <div>
+                    <div class="ext-name">Error Lens</div>
+                    <div class="ext-desc">Shows errors right next to the line instead of hiding them</div>
+                    <div class="ext-tag">RECOMMENDED</div>
+                </div>
+            </div>
+            <div class="ext-card">
+                <div class="emoji">🌐</div>
+                <div>
+                    <div class="ext-name">Live Server</div>
+                    <div class="ext-desc">Preview your website instantly in a browser</div>
+                    <div class="ext-tag">RECOMMENDED</div>
+                </div>
+            </div>
+            <div class="ext-card">
+                <div class="emoji">📁</div>
+                <div>
+                    <div class="ext-name">Material Icon Theme</div>
+                    <div class="ext-desc">Pretty icons for your files so they're easier to spot</div>
+                    <div class="ext-tag optional">NICE TO HAVE</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="callout tip" style="margin-top: 16px;">
+            <div class="callout-emoji">✨</div>
+            <div class="callout-text">
+                <strong>The whole point is to make it feel like YOUR space.</strong><br>
+                Change the colors. Make the font bigger. Add rainbow indentation. When your screen looks like something you want to stare at, coding stops being scary and starts being fun.
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== STEP 4: TALK TO AI ===== -->
+    <div class="section" id="step-4">
+        <h2>Step 4: Start Talking to AI <span style="font-size: 0.5em; color: #6c7086;">⏱️ the fun part!</span></h2>
+        <p style="margin-bottom: 16px;">This is where the magic happens. You talk, AI builds, you react.</p>
+
+        <div class="step">
+            <div class="step-number">1</div>
+            <div class="step-content">
+                <strong>Open Copilot Chat</strong>
+                <span>Press <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>I</kbd> (or <kbd>Cmd</kbd> + <kbd>Shift</kbd> + <kbd>I</kbd> on Mac). A chat window opens on the side.</span>
+            </div>
+        </div>
+        <div class="step">
+            <div class="step-number">2</div>
+            <div class="step-content">
+                <strong>Type what you want in plain English</strong>
+                <span>No coding language needed! Just describe what you're trying to do, like you're talking to a helpful colleague.</span>
+            </div>
+        </div>
+        <div class="step">
+            <div class="step-number">3</div>
+            <div class="step-content">
+                <strong>Click "Apply" on the AI's response</strong>
+                <span>It puts the code right into your file. Save with <kbd>Ctrl</kbd> + <kbd>S</kbd> and see it come to life.</span>
+            </div>
+        </div>
+
+        <div class="callout tip">
+            <div class="callout-emoji">🎯</div>
+            <div class="callout-text">
+                <strong>Talk to it like a person!</strong><br>
+                "I don't like that." "Make it simpler." "What does this do?" "That's broken, fix it." The more natural you are, the better it works.
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== THE CHAT IS YOUR SUPERPOWER ===== -->
+    <div class="section" id="chat-superpower" style="border-left-color: #f59e0b;">
+        <h2 style="color: #fab387;">💬 The Chat Is Your Superpower</h2>
+        <p style="margin-bottom: 16px;">Here's the secret most people don't realize: <strong>you can ask the chat to do ANYTHING inside VS Code.</strong> You don't need to Google it. You don't need to find a menu. You don't need to figure it out alone. Just ask.</p>
+
+        <h3>You can literally type these into the chat:</h3>
+
+        <div class="shortcut-row"><span class="what" style="color:#cdd6f4;">"Change my theme to something dark and modern"</span><span style="color:#a6e3a1;">It changes your theme</span></div>
+        <div class="shortcut-row"><span class="what" style="color:#cdd6f4;">"Make the font bigger"</span><span style="color:#a6e3a1;">It adjusts your settings</span></div>
+        <div class="shortcut-row"><span class="what" style="color:#cdd6f4;">"Install the Indent Rainbow extension"</span><span style="color:#a6e3a1;">It installs it for you</span></div>
+        <div class="shortcut-row"><span class="what" style="color:#cdd6f4;">"What extensions do I need for building a website?"</span><span style="color:#a6e3a1;">It recommends and installs them</span></div>
+        <div class="shortcut-row"><span class="what" style="color:#cdd6f4;">"I don't know what I'm looking at. Help."</span><span style="color:#a6e3a1;">It explains everything on screen</span></div>
+        <div class="shortcut-row"><span class="what" style="color:#cdd6f4;">"Something broke. Fix it."</span><span style="color:#a6e3a1;">It finds and fixes the problem</span></div>
+        <div class="shortcut-row"><span class="what" style="color:#cdd6f4;">"Save my work to GitHub"</span><span style="color:#a6e3a1;">It walks you through it</span></div>
+        <div class="shortcut-row"><span class="what" style="color:#cdd6f4;">"I'm stuck. What should I do next?"</span><span style="color:#a6e3a1;">It gives you a next step</span></div>
+
+        <div class="callout" style="background: rgba(245,158,11,0.15); border-color: rgba(245,158,11,0.3); margin-top: 16px;">
+            <div class="callout-emoji">🔑</div>
+            <div class="callout-text">
+                <strong>The #1 rule of vibe coding: When you're stuck, ask the chat.</strong><br>
+                It can change settings, install tools, explain errors, write code, fix bugs, and guide you step by step. You never have to figure anything out alone. The chat is your co-pilot. Use it for everything.
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== WHAT COULD YOU BUILD ===== -->
+    <div class="section green" id="what-to-build">
+        <h2>What Could YOU Build?</h2>
+        <p style="margin-bottom: 16px;">Here are real things people with zero coding experience have built using vibe coding. Each one started with a conversation in the chat.</p>
+
+        <div class="ext-grid">
+            <div class="ext-card">
+                <div class="emoji">🏠</div>
+                <div>
+                    <div class="ext-name">Personal Portfolio Website</div>
+                    <div class="ext-desc">A professional page showcasing your work, skills, and contact info</div>
+                    <div class="ext-tag">~20 MINUTES</div>
+                </div>
+            </div>
+            <div class="ext-card">
+                <div class="emoji">📊</div>
+                <div>
+                    <div class="ext-name">Team Dashboard</div>
+                    <div class="ext-desc">An interactive page that shows your team's goals, metrics, or project status</div>
+                    <div class="ext-tag">~30 MINUTES</div>
+                </div>
+            </div>
+            <div class="ext-card">
+                <div class="emoji">✅</div>
+                <div>
+                    <div class="ext-name">Planning Tool</div>
+                    <div class="ext-desc">A to-do list, weekly planner, or project tracker customized for how YOU work</div>
+                    <div class="ext-tag">~15 MINUTES</div>
+                </div>
+            </div>
+            <div class="ext-card">
+                <div class="emoji">📅</div>
+                <div>
+                    <div class="ext-name">Event or Meeting Page</div>
+                    <div class="ext-desc">A clean page with agenda, speakers, links, and countdown timer</div>
+                    <div class="ext-tag">~20 MINUTES</div>
+                </div>
+            </div>
+            <div class="ext-card">
+                <div class="emoji">📝</div>
+                <div>
+                    <div class="ext-name">Newsletter Template</div>
+                    <div class="ext-desc">A polished email-style recap you can reuse for any meeting</div>
+                    <div class="ext-tag">~15 MINUTES</div>
+                </div>
+            </div>
+            <div class="ext-card">
+                <div class="emoji">🧠</div>
+                <div>
+                    <div class="ext-name">Knowledge Hub</div>
+                    <div class="ext-desc">A searchable, organized page for all the info trapped in your team's slide decks</div>
+                    <div class="ext-tag">~45 MINUTES</div>
+                </div>
+            </div>
+        </div>
+
+        <h3 style="margin-top: 24px;">Just paste these prompts into the chat to get started:</h3>
+
+        <div class="prompt-block">
+            <div class="prompt-label">🏠 Portfolio</div>
+            <code>Create a personal portfolio website for me. 
+Include sections for: About Me, My Skills, 
+My Projects, and Contact Info. Make it modern 
+and professional with a dark theme.</code>
+        </div>
+
+        <div class="prompt-block">
+            <div class="prompt-label">📊 Dashboard</div>
+            <code>Create an interactive dashboard page for my team. 
+Include cards showing 4 key metrics with 
+numbers and progress bars. Make it colorful 
+and easy to scan quickly.</code>
+        </div>
+
+        <div class="prompt-block">
+            <div class="prompt-label">📝 Newsletter</div>
+            <code>Create a professional newsletter template I can 
+reuse after meetings. Include sections for: 
+Key Takeaways, Action Items, and Next Steps. 
+Make it clean enough to paste into an email.</code>
+        </div>
+
+        <div class="prompt-block">
+            <div class="prompt-label">✅ Planner</div>
+            <code>Create a weekly planner page with days of the 
+week, a to-do list for each day, and a notes 
+section. Add checkboxes I can click. Make it 
+fun and colorful.</code>
+        </div>
+    </div>
+
+    <!-- ===== NEURODIVERGENT CALLOUT ===== -->
+    <div class="section" id="nd-brains" style="border-left-color: #c4b5fd; background: linear-gradient(135deg, #313244 0%, #2a2040 100%);">
+        <h2 style="color: #c4b5fd;">🧠 If Your Brain Works Differently</h2>
+        <p style="margin-bottom: 16px;">If you have ADHD, dyslexia, autism, or any brain that doesn't fit the "standard" mold, vibe coding might feel like it was made for you. Because in many ways, it was.</p>
+
+        <div class="step">
+            <div class="step-number" style="background: #c4b5fd; color: #1e1e2e;">💡</div>
+            <div class="step-content">
+                <strong>Tell the AI how your brain works</strong>
+                <span>"I have ADHD. One step at a time. Wait for me before moving on." The AI adapts to YOU. Use the Style Profile Builder above to set this up once and it remembers every time.</span>
+            </div>
+        </div>
+        <div class="step">
+            <div class="step-number" style="background: #c4b5fd; color: #1e1e2e;">🎨</div>
+            <div class="step-content">
+                <strong>Make VS Code feel calm, not chaotic</strong>
+                <span>Ask the chat: "Set up VS Code for someone with ADHD. I need a calm theme, big fonts, and rainbow indentation." It will customize everything for you.</span>
+            </div>
+        </div>
+        <div class="step">
+            <div class="step-number" style="background: #c4b5fd; color: #1e1e2e;">🔄</div>
+            <div class="step-content">
+                <strong>Fast feedback loops = dopamine</strong>
+                <span>Vibe coding gives you instant results. Describe something, see it appear, tweak it, see it change. That rapid feedback cycle is exactly how many neurodivergent brains thrive.</span>
+            </div>
+        </div>
+        <div class="step">
+            <div class="step-number" style="background: #c4b5fd; color: #1e1e2e;">🛡️</div>
+            <div class="step-content">
+                <strong>Mistakes are safe here</strong>
+                <span>Break things. See red lines. Say "fix it." Every mistake undoes with Ctrl+Z. Nothing is permanent. Your weird, creative, nonlinear brain is an asset here, not a limitation.</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== KNOW YOUR WAY AROUND ===== -->
+    <div class="section teal">
+        <h2>What You're Looking At</h2>
+        <p style="margin-bottom: 16px;">VS Code has a few key areas. Here's what each part does:</p>
+        
+        <div class="vscode-map">
+            <div class="map-row">
+                <div class="map-box big" style="background:#0078d4;color:white;">Menu Bar — File, Edit, View menus (top)</div>
+            </div>
+            <div class="map-label">↓</div>
+            <div class="map-row">
+                <div class="map-box" style="width:50px;">Side<br>Bar<br><small>icons</small></div>
+                <div class="map-box highlight big">Editor — Where you see your files<br><small>(the big area in the middle)</small></div>
+            </div>
+            <div class="map-label">↓</div>
+            <div class="map-row">
+                <div class="map-box big" style="background:#585b70;">Terminal — Where commands run (bottom)<br><small>Don't worry about this yet!</small></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== STYLE BUILDER ===== -->
+    <div class="section builder" id="style-builder">
+        <h2>Build Your AI Style Profile</h2>
+        <p style="margin-bottom: 8px;">Everyone's brain works differently. Answer these questions and we'll generate a personalized file that teaches AI how <strong>you</strong> like to communicate.</p>
+        <p style="margin-bottom: 20px; color: #6c7086;"><em>Click your preferences below. Your custom file will appear at the bottom.</em></p>
+
+        <div class="builder-form">
+            <div class="form-group">
+                <label>Your name</label>
+                <input type="text" id="userName" placeholder="e.g. Alex, Sam, Maria..." oninput="generateOutput()">
+            </div>
+
+            <div class="form-group">
+                <label>What do you do?</label>
+                <input type="text" id="userRole" placeholder="e.g. Marketing manager, Teacher, Small business owner..." oninput="generateOutput()">
+            </div>
+
+            <div class="form-group">
+                <label>How much coding experience do you have?</label>
+                <div class="option-grid" data-group="experience">
+                    <button class="option-btn selected" onclick="selectOption(this, 'experience')">Brand new — never coded</button>
+                    <button class="option-btn" onclick="selectOption(this, 'experience')">Some basics — I've tinkered</button>
+                    <button class="option-btn" onclick="selectOption(this, 'experience')">Intermediate — I can get around</button>
+                    <button class="option-btn" onclick="selectOption(this, 'experience')">Experienced — I know what I'm doing</button>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>How do you like information delivered?</label>
+                <div class="form-hint">Pick all that apply</div>
+                <div class="option-grid" data-group="comm" data-multi="true">
+                    <button class="option-btn selected" onclick="toggleOption(this)">One step at a time</button>
+                    <button class="option-btn" onclick="toggleOption(this)">Give me the full picture first</button>
+                    <button class="option-btn selected" onclick="toggleOption(this)">Use bullet points & lists</button>
+                    <button class="option-btn" onclick="toggleOption(this)">Use tables when possible</button>
+                    <button class="option-btn" onclick="toggleOption(this)">Keep it super brief</button>
+                    <button class="option-btn" onclick="toggleOption(this)">Explain the "why" not just "how"</button>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>How do you feel about emojis?</label>
+                <div class="option-grid" data-group="emoji">
+                    <button class="option-btn selected" onclick="selectOption(this, 'emoji')">Love them! Use lots of emojis</button>
+                    <button class="option-btn" onclick="selectOption(this, 'emoji')">A few is fine</button>
+                    <button class="option-btn" onclick="selectOption(this, 'emoji')">No emojis — keep it clean</button>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>When something goes wrong, I prefer the AI to...</label>
+                <div class="option-grid" data-group="errors">
+                    <button class="option-btn selected" onclick="selectOption(this, 'errors')">Reassure me it's normal, then fix it</button>
+                    <button class="option-btn" onclick="selectOption(this, 'errors')">Just fix it — skip the pep talk</button>
+                    <button class="option-btn" onclick="selectOption(this, 'errors')">Explain what went wrong so I learn</button>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>What tone do you prefer?</label>
+                <div class="option-grid" data-group="tone">
+                    <button class="option-btn selected" onclick="selectOption(this, 'tone')">Friendly & encouraging</button>
+                    <button class="option-btn" onclick="selectOption(this, 'tone')">Professional & straightforward</button>
+                    <button class="option-btn" onclick="selectOption(this, 'tone')">Casual & conversational</button>
+                    <button class="option-btn" onclick="selectOption(this, 'tone')">Teacher-like — guide me</button>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>What are you building? <span style="color:#6c7086;">(optional)</span></label>
+                <textarea id="userProject" placeholder="e.g. A website for my team, a personal portfolio, a to-do app, a dashboard..." oninput="generateOutput()"></textarea>
+            </div>
+
+            <div class="form-group">
+                <label>Anything else AI should know about how you work? <span style="color:#6c7086;">(optional)</span></label>
+                <textarea id="userExtra" placeholder="e.g. I'm neurodivergent and need clear structure, I'm a visual learner, I work best in short sprints..." oninput="generateOutput()"></textarea>
+            </div>
+        </div>
+
+        <div class="divider"></div>
+        <div class="output-box">
+            <div class="output-header">
+                <h3>Your Personalized copilot-instructions.md</h3>
+                <button class="copy-btn" onclick="copyOutput()">Copy to Clipboard</button>
+            </div>
+            <pre id="outputText"></pre>
+        </div>
+
+        <div class="callout tip" style="margin-top: 16px;">
+            <div class="callout-emoji">📋</div>
+            <div class="callout-text">
+                <strong>How to use this file:</strong><br>
+                1. Copy the text above<br>
+                2. In VS Code, open Copilot Chat (<kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>I</kbd>)<br>
+                3. Tell it: "Create a file called .github/copilot-instructions.md with these contents" and paste your text<br>
+                4. Now Copilot follows YOUR style every time you chat!
+            </div>
+        </div>
+
+        <!-- AI BRAIN CARD -->
+        <div class="brain-card-container" id="brain-card-area">
+            <div class="divider" style="margin: 24px 0;"></div>
+            <h3 style="color: #c4b5fd; text-align: center; margin-bottom: 16px; font-size: 1.3em;">🪪 Your AI Brain Card</h3>
+            <p style="text-align: center; color: #6c7086; margin-bottom: 16px; font-size: 0.9em;">Screenshot this and share it! Show the world how YOUR brain works with AI.</p>
+            <div class="brain-card" id="brain-card">
+                <div class="bc-header">
+                    <div class="bc-emoji">🧠</div>
+                    <div class="bc-title" id="bc-name">Your AI Brain Card</div>
+                    <div class="bc-subtitle" id="bc-role"></div>
+                </div>
+                <div class="bc-grid">
+                    <div class="bc-item">
+                        <div class="bc-label">Brain Type</div>
+                        <div class="bc-value" id="bc-type">Visual Builder</div>
+                    </div>
+                    <div class="bc-item">
+                        <div class="bc-label">Tone</div>
+                        <div class="bc-value" id="bc-tone">Friendly</div>
+                    </div>
+                    <div class="bc-item">
+                        <div class="bc-label">Error Style</div>
+                        <div class="bc-value" id="bc-errors">Reassure me</div>
+                    </div>
+                    <div class="bc-item">
+                        <div class="bc-label">First Build</div>
+                        <div class="bc-value">~20 min 🚀</div>
+                    </div>
+                </div>
+                <div style="text-align: center; margin: 12px 0;" id="bc-tags"></div>
+                <div class="bc-footer">
+                    <div class="bc-hashtag">#VibeCoding  #ThePowerBehindAI</div>
+                    <div style="color: #6c7086; font-size: 0.75em; margin-top: 6px;">AI doesn't need you to code. It needs you to think.</div>
+                </div>
+            </div>
+            <div class="bc-actions">
+                <button class="bc-share-btn" onclick="shareBrainCard()">📋 Copy Card Text</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== 20-MINUTE CHALLENGE ===== -->
+    <div class="section" id="challenge" style="border-left-color: #0078d4; background: linear-gradient(135deg, #313244 0%, #1a2744 100%);">
+        <h2 style="color: #89b4fa;">⏱️ The 20-Minute Challenge</h2>
+        <p style="margin-bottom: 8px;">Ready to prove to yourself that you can do this? Follow these 5 steps and you'll have a real web page built by YOU in 20 minutes or less.</p>
+        <p style="margin-bottom: 16px; color: #6c7086; font-size: 0.9em;">Click each checkbox as you complete the step. Timer starts when you click "Start Challenge."</p>
+
+        <div style="text-align: center; margin-bottom: 20px;">
+            <button class="big-button" onclick="startChallenge()" id="challenge-start-btn">🚀 Start the 20-Minute Challenge</button>
+        </div>
+        <div class="challenge-timer" id="challenge-timer">20:00</div>
+
+        <div class="challenge-step" id="cs-1" onclick="toggleChallenge(1)">
+            <div class="cs-check">✓</div>
+            <div class="step-content">
+                <strong>Step 1: Open VS Code and Copilot Chat (2 min)</strong>
+                <span>Open VS Code. Press <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>I</kbd> to open Copilot Chat. If you haven't signed in yet, sign in with GitHub first.</span>
+            </div>
+        </div>
+        <div class="challenge-step" id="cs-2" onclick="toggleChallenge(2)">
+            <div class="cs-check">✓</div>
+            <div class="step-content">
+                <strong>Step 2: Create your project folder (1 min)</strong>
+                <span>Tell Copilot: <em>"Create a new folder called my-first-page and open it as my workspace."</em> Or do File → Open Folder → create a new folder anywhere on your computer.</span>
+            </div>
+        </div>
+        <div class="challenge-step" id="cs-3" onclick="toggleChallenge(3)">
+            <div class="cs-check">✓</div>
+            <div class="step-content">
+                <strong>Step 3: Tell AI what to build (2 min)</strong>
+                <span>Paste this into the chat: <em>"Create a beautiful HTML page about me. Include my name, a short bio, 3 things I'm good at, and a fun fact. Use a dark theme with modern colors. Keep it simple."</em></span>
+            </div>
+        </div>
+        <div class="challenge-step" id="cs-4" onclick="toggleChallenge(4)">
+            <div class="cs-check">✓</div>
+            <div class="step-content">
+                <strong>Step 4: See it in your browser (2 min)</strong>
+                <span>Click "Apply" on Copilot's response. Save the file (<kbd>Ctrl</kbd> + <kbd>S</kbd>). Then right-click the file and select "Open with Live Server" — or just double-click the .html file to open it in your browser.</span>
+            </div>
+        </div>
+        <div class="challenge-step" id="cs-5" onclick="toggleChallenge(5)">
+            <div class="cs-check">✓</div>
+            <div class="step-content">
+                <strong>Step 5: Make it yours (5 min)</strong>
+                <span>Don't love it? Tell the AI! <em>"Make the font bigger." "Change the colors to blue and purple." "Add a photo placeholder." "Make it more fun."</em> Keep tweaking until you smile.</span>
+            </div>
+        </div>
+
+        <div style="text-align: center; margin-top: 20px; color: #6c7086; font-size: 0.9em;" id="challenge-status">
+            Click "Start Challenge" to begin your timer!
+        </div>
+    </div>
+
+    <!-- CONFETTI OVERLAY -->
+    <div class="confetti-overlay" id="confetti-overlay" onclick="this.classList.remove('show')">
+        <div class="confetti-box">
+            <div style="font-size: 4em; margin-bottom: 12px;">🎉🏆🎉</div>
+            <h2 style="color: #16a34a; margin-bottom: 8px;">YOU DID IT!</h2>
+            <p style="color: #cdd6f4; font-size: 1.1em; margin-bottom: 4px;">You just built your first page!</p>
+            <p style="color: #a6adc8; margin-bottom: 16px;" id="confetti-time">Time: --:--</p>
+            <p style="color: #6c7086; font-size: 0.9em; margin-bottom: 20px;">Zero coding experience. Real results. Your brain did that.</p>
+            <div style="background: #1e1e2e; border-radius: 12px; padding: 16px; margin-bottom: 16px;">
+                <p style="color: #a6e3a1; font-size: 0.9em;">🏆 I built my first page with zero coding experience!<br>⏱️ <span id="confetti-share-time"></span> | Tool: VS Code + GitHub Copilot<br>#VibeCoding #ThePowerBehindAI</p>
+            </div>
+            <button class="big-button" onclick="copyAchievement()" style="font-size: 0.95em;">📋 Copy & Share Your Win</button>
+        </div>
+    </div>
+    <div class="section orange" id="prompts">
+        <h2>Your First Prompts (Copy and Paste These!)</h2>
+        <p style="margin-bottom: 16px;">Don't know what to type? Start with these. Modify them for your own needs!</p>
+
+        <h3>Build Your First Page</h3>
+        <div class="prompt-block">
+            <div class="prompt-label">Start Here</div>
+            <code>Create a simple HTML page that says "Hello World" 
+with a nice design. Use modern colors and clean 
+layout. Keep the code simple — I'm learning!</code>
+        </div>
+
+        <h3>Build Something Useful</h3>
+        <div class="prompt-block">
+            <div class="prompt-label">Create</div>
+            <code>Create a web page that [describe what you want].
+Make it look modern and professional.
+I have zero coding experience so keep it simple.</code>
+        </div>
+
+        <h3>When Something Breaks</h3>
+        <div class="prompt-block">
+            <div class="prompt-label">Fix</div>
+            <code>Something isn't working. 
+Here's what I wanted: [what you expected]
+Here's what happened: [what went wrong]
+Help me fix it step by step.</code>
+        </div>
+
+        <h3>When You're Confused</h3>
+        <div class="prompt-block">
+            <div class="prompt-label">Help</div>
+            <code>I'm looking at this and I have no idea what it 
+does. Can you explain it to me like I've never 
+seen code before? Use simple language.</code>
+        </div>
+
+        <h3>Make It Look Better</h3>
+        <div class="prompt-block">
+            <div class="prompt-label">Design</div>
+            <code>This page works but it's ugly. Make it look 
+modern and professional. Keep the same content, 
+just make it pretty.</code>
+        </div>
+    </div>
+
+    <!-- ===== KEYBOARD SHORTCUTS ===== -->
+    <div class="section purple">
+        <h2>The Only Shortcuts You Need</h2>
+        <p style="margin-bottom: 16px;">You don't need to memorize 100 shortcuts. These cover 90% of everything:</p>
+
+        <div class="shortcut-row"><span class="what">Open AI Chat</span><span><kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>I</kbd></span></div>
+        <div class="shortcut-row"><span class="what">Save your file</span><span><kbd>Ctrl</kbd> + <kbd>S</kbd></span></div>
+        <div class="shortcut-row"><span class="what">Search for anything</span><span><kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>P</kbd></span></div>
+        <div class="shortcut-row"><span class="what">Undo a mistake</span><span><kbd>Ctrl</kbd> + <kbd>Z</kbd></span></div>
+        <div class="shortcut-row"><span class="what">Zoom in / Zoom out</span><span><kbd>Ctrl</kbd> + <kbd>=</kbd> / <kbd>Ctrl</kbd> + <kbd>-</kbd></span></div>
+        <div class="shortcut-row"><span class="what">Copy / Paste</span><span><kbd>Ctrl</kbd> + <kbd>C</kbd> / <kbd>Ctrl</kbd> + <kbd>V</kbd></span></div>
+
+        <div class="callout tip" style="margin-top: 16px;">
+            <div class="callout-emoji">🍎</div>
+            <div class="callout-text">
+                <strong>On a Mac?</strong> Replace <kbd>Ctrl</kbd> with <kbd>Cmd</kbd> for all shortcuts above.
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== COMMON GOTCHAS ===== -->
+    <div class="section orange" id="dont-panic">
+        <h2>Don't Panic — Everyone Hits These</h2>
+
+        <div class="step">
+            <div class="step-number" style="background:#f59e0b;">!</div>
+            <div class="step-content">
+                <strong>"I see red squiggly lines!"</strong>
+                <span>That's like spell check for code. It's helping, not yelling. Hover over it to see what's up, or tell Copilot: "Fix the errors in this file."</span>
+            </div>
+        </div>
+        <div class="step">
+            <div class="step-number" style="background:#f59e0b;">!</div>
+            <div class="step-content">
+                <strong>"My changes disappeared!"</strong>
+                <span>You probably didn't save. Press <kbd>Ctrl</kbd> + <kbd>S</kbd> after every change. The dot on the file tab means "unsaved."</span>
+            </div>
+        </div>
+        <div class="step">
+            <div class="step-number" style="background:#f59e0b;">!</div>
+            <div class="step-content">
+                <strong>"I broke everything!"</strong>
+                <span>Don't panic! Press <kbd>Ctrl</kbd> + <kbd>Z</kbd> a few times to undo. You can also tell Copilot: "I messed something up. Help me get back to where it was working."</span>
+            </div>
+        </div>
+        <div class="step">
+            <div class="step-number" style="background:#f59e0b;">!</div>
+            <div class="step-content">
+                <strong>"The AI is going in circles!"</strong>
+                <span>Tell it: "Stop. Start from scratch. Take a fresh approach." Sometimes a clean start fixes everything.</span>
+            </div>
+        </div>
+        <div class="step">
+            <div class="step-number" style="background:#f59e0b;">!</div>
+            <div class="step-content">
+                <strong>"I don't understand what the AI wrote!"</strong>
+                <span>That's totally fine! Say: "Explain what you just did in simple language." It will break it down for you.</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== YOUR FIRST 5 MINUTES ===== -->
+    <div class="section green">
+        <h2>Your First 5 Minutes — Checklist</h2>
+
+        <div class="step"><div class="step-number" style="background:#16a34a;">✓</div><div class="step-content"><strong>Download and open VS Code</strong><span><a href="https://code.visualstudio.com/" target="_blank">code.visualstudio.com</a> — free for Windows, Mac, and Linux</span></div></div>
+        <div class="step"><div class="step-number" style="background:#16a34a;">✓</div><div class="step-content"><strong>Sign in with GitHub</strong><span>Person icon (bottom-left) → Sign in with GitHub (create a free account at <a href="https://github.com/signup" target="_blank">github.com/signup</a> if you need one)</span></div></div>
+        <div class="step"><div class="step-number" style="background:#16a34a;">✓</div><div class="step-content"><strong>Make it yours</strong><span>Change the theme, zoom in, add Indent Rainbow extension</span></div></div>
+        <div class="step"><div class="step-number" style="background:#16a34a;">✓</div><div class="step-content"><strong>Open Copilot Chat and say hi!</strong><span>Press <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>I</kbd> → Type: "Help me create a simple hello world page"</span></div></div>
+        <div class="step"><div class="step-number" style="background:#16a34a;">✓</div><div class="step-content"><strong>Build your Style Profile</strong><span>Scroll up to the purple "Build Your AI Style Profile" section and tell AI how your brain works!</span></div></div>
+    </div>
+
+    <!-- ===== SCARY WORDS TRANSLATED ===== -->
+    <div class="section" id="scary-words">
+        <h2>Scary Words Translated</h2>
+        <p style="margin-bottom: 16px;">Tech people use confusing words for simple things. Here's the translation guide:</p>
+
+        <div class="shortcut-row"><span class="what" style="color:#cdd6f4;"><strong>Repo</strong></span><span style="color:#a6e3a1;">A project folder</span></div>
+        <div class="shortcut-row"><span class="what" style="color:#cdd6f4;"><strong>Clone</strong></span><span style="color:#a6e3a1;">Download a project</span></div>
+        <div class="shortcut-row"><span class="what" style="color:#cdd6f4;"><strong>Commit</strong></span><span style="color:#a6e3a1;">Save a checkpoint</span></div>
+        <div class="shortcut-row"><span class="what" style="color:#cdd6f4;"><strong>Push</strong></span><span style="color:#a6e3a1;">Upload your work</span></div>
+        <div class="shortcut-row"><span class="what" style="color:#cdd6f4;"><strong>Pull</strong></span><span style="color:#a6e3a1;">Download the latest version</span></div>
+        <div class="shortcut-row"><span class="what" style="color:#cdd6f4;"><strong>Branch</strong></span><span style="color:#a6e3a1;">A safe copy to experiment on</span></div>
+        <div class="shortcut-row"><span class="what" style="color:#cdd6f4;"><strong>Merge</strong></span><span style="color:#a6e3a1;">Combine your changes back</span></div>
+        <div class="shortcut-row"><span class="what" style="color:#cdd6f4;"><strong>HTML</strong></span><span style="color:#a6e3a1;">The language websites are written in</span></div>
+        <div class="shortcut-row"><span class="what" style="color:#cdd6f4;"><strong>Extension</strong></span><span style="color:#a6e3a1;">An add-on app for VS Code</span></div>
+        <div class="shortcut-row"><span class="what" style="color:#cdd6f4;"><strong>Terminal</strong></span><span style="color:#a6e3a1;">A text-based way to talk to your computer</span></div>
+    </div>
+
+    <!-- ===== HELPFUL LINKS ===== -->
+    <div class="section teal">
+        <h2>Learn More</h2>
+        <div class="ext-grid">
+            <div class="ext-card">
+                <div class="emoji">📥</div>
+                <div>
+                    <div class="ext-name"><a href="https://code.visualstudio.com/" target="_blank">Download VS Code</a></div>
+                    <div class="ext-desc">Free for Windows, Mac, and Linux</div>
+                </div>
+            </div>
+            <div class="ext-card">
+                <div class="emoji">📚</div>
+                <div>
+                    <div class="ext-name"><a href="https://code.visualstudio.com/docs/getstarted/introvideos" target="_blank">VS Code Intro Videos</a></div>
+                    <div class="ext-desc">Short videos that walk you through the basics</div>
+                </div>
+            </div>
+            <div class="ext-card">
+                <div class="emoji">🤖</div>
+                <div>
+                    <div class="ext-name"><a href="https://docs.github.com/en/copilot" target="_blank">GitHub Copilot Docs</a></div>
+                    <div class="ext-desc">Everything about using AI in VS Code</div>
+                </div>
+            </div>
+            <div class="ext-card">
+                <div class="emoji">🆓</div>
+                <div>
+                    <div class="ext-name"><a href="https://github.com/signup" target="_blank">Create GitHub Account</a></div>
+                    <div class="ext-desc">Free account — includes Copilot Free</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<!-- ===== FOOTER ===== -->
+<div class="footer">
+    <p style="font-size: 1.2em; font-weight: 700; color: #cdd6f4; margin-bottom: 8px;">The Power Behind AI: Your Brain</p>
+    <p><em>"You don't need to be a coder to build cool things."</em></p>
+    <p style="margin-top: 16px; color: #a6adc8;">Built something? Share it! Tag <strong style="color: #89b4fa;">#VibeCoding</strong> and inspire someone else to start.</p>
+    <p style="margin-top: 8px; color: #6c7086;">Remember: when you're stuck, ask the chat. Always.</p>
+</div>
+
+<!-- ===== TOAST ===== -->
+<div class="toast" id="toast">Copied to clipboard!</div>
+
+<script>
+function selectOption(btn, group) {
+    const siblings = btn.parentElement.querySelectorAll('.option-btn');
+    siblings.forEach(b => b.classList.remove('selected'));
+    btn.classList.add('selected');
+    generateOutput();
+}
+
+function toggleOption(btn) {
+    btn.classList.toggle('selected');
+    generateOutput();
+}
+
+function getSelected(group) {
+    const container = document.querySelector(`[data-group="${group}"]`);
+    const selected = container.querySelectorAll('.option-btn.selected');
+    return Array.from(selected).map(b => b.textContent.trim());
+}
+
+function getSelectedSingle(group) {
+    const arr = getSelected(group);
+    return arr.length > 0 ? arr[0] : '';
+}
+
+function generateOutput() {
+    const name = document.getElementById('userName').value.trim() || '[Your Name]';
+    const role = document.getElementById('userRole').value.trim() || '[Your Role]';
+    const project = document.getElementById('userProject').value.trim();
+    const extra = document.getElementById('userExtra').value.trim();
+
+    const experience = getSelectedSingle('experience');
+    const commPrefs = getSelected('comm');
+    const emojiPref = getSelectedSingle('emoji');
+    const errorPref = getSelectedSingle('errors');
+    const tonePref = getSelectedSingle('tone');
+
+    let experienceText = '';
+    switch(experience) {
+        case 'Brand new — never coded':
+            experienceText = "- I have never coded before — explain everything simply\n- Don't assume I know any programming terms\n- If you use a technical word, briefly explain what it means";
+            break;
+        case "Some basics — I've tinkered":
+            experienceText = "- I have some basic experience but I'm still learning\n- Explain technical terms briefly when they come up";
+            break;
+        case "Intermediate — I can get around":
+            experienceText = "- I have intermediate experience — I know the basics\n- You can use common coding terms without explaining them";
+            break;
+        case "Experienced — I know what I'm doing":
+            experienceText = "- I'm experienced — be direct and skip beginner explanations\n- Use technical terms freely";
+            break;
+        default:
+            experienceText = '- Explain things at a beginner-friendly level';
+    }
+
+    let emojiText = '';
+    switch(emojiPref) {
+        case 'Love them! Use lots of emojis': emojiText = '- Use emojis generously as visual anchors'; break;
+        case "A few is fine": emojiText = "- Use emojis sparingly — a few for emphasis is fine"; break;
+        case "No emojis — keep it clean": emojiText = '- Do NOT use emojis — keep all responses clean'; break;
+        default: emojiText = '- Use emojis moderately';
+    }
+
+    let commText = commPrefs.map(p => {
+        switch(p) {
+            case 'One step at a time': return "- Give me ONE step at a time — don't jump ahead";
+            case 'Give me the full picture first': return '- Give me the full picture/overview first, then break it down';
+            case 'Use bullet points & lists': return '- Use bullet points and lists for easy scanning';
+            case 'Use tables when possible': return '- Use tables to organize information when it makes sense';
+            case 'Keep it super brief': return '- Keep responses as short as possible';
+            case 'Explain the "why" not just "how"': return "- Always explain WHY we're doing something, not just how";
+            default: return '';
+        }
+    }).filter(Boolean).join('\n');
+
+    let errorText = '';
+    switch(errorPref) {
+        case "Reassure me it's normal, then fix it":
+            errorText = "- When something breaks, reassure me it's normal and we'll fix it together\n- Don't make me feel like I did something wrong"; break;
+        case "Just fix it — skip the pep talk":
+            errorText = '- When something breaks, just fix it efficiently — no need for reassurance'; break;
+        case 'Explain what went wrong so I learn':
+            errorText = '- When something breaks, explain what went wrong and why before fixing it'; break;
+        default: errorText = '- Be supportive when errors happen';
+    }
+
+    let toneText = '';
+    switch(tonePref) {
+        case 'Friendly & encouraging': toneText = '- Be friendly, warm, and encouraging\n- Celebrate progress and small wins'; break;
+        case 'Professional & straightforward': toneText = '- Be professional and straightforward\n- No fluff — just clear, direct communication'; break;
+        case 'Casual & conversational': toneText = "- Be casual and conversational — like a coworker helping me out"; break;
+        case 'Teacher-like — guide me': toneText = '- Be like a patient teacher — guide me through concepts'; break;
+        default: toneText = '- Be friendly and supportive';
+    }
+
+    let output = `# Copilot Instructions for ${name}
+
+## About Me
+- I work as ${role}
+${experienceText}
+- I describe what I want in plain English — I think in ideas, not code
+
+## Communication Style
+${emojiText}
+${commText}
+
+## Tone
+${toneText}
+
+## When Things Go Wrong
+${errorText}
+
+## Never Do This
+- Don't give me walls of text
+- Don't move to the next step until I confirm the current one worked
+- Don't show me 5 options when 1 good recommendation will do`;
+
+    if (project) output += `\n\n## What I'm Building\n- ${project}`;
+    if (extra) output += `\n\n## Additional Context\n- ${extra}`;
+
+    document.getElementById('outputText').textContent = output;
+}
+
+function copyOutput() {
+    const text = document.getElementById('outputText').textContent;
+    navigator.clipboard.writeText(text).then(() => {
+        const btn = document.querySelector('.copy-btn');
+        btn.textContent = 'Copied!';
+        btn.classList.add('copied');
+        const toast = document.getElementById('toast');
+        toast.classList.add('show');
+        setTimeout(() => {
+            btn.textContent = 'Copy to Clipboard';
+            btn.classList.remove('copied');
+            toast.classList.remove('show');
+        }, 2500);
+    });
+}
+
+document.addEventListener('DOMContentLoaded', generateOutput);
+
+// ===== AI BRAIN CARD =====
+function getBrainType() {
+    const comm = getSelected('comm');
+    if (comm.includes('One step at a time')) return 'The Step-by-Stepper';
+    if (comm.includes('Give me the full picture first')) return 'The Big Picture Thinker';
+    if (comm.includes('Keep it super brief')) return 'The Speed Runner';
+    return 'The Visual Builder';
+}
+
+function updateBrainCard() {
+    const name = document.getElementById('userName').value.trim() || 'Vibe Coder';
+    const role = document.getElementById('userRole').value.trim() || '';
+    const tone = getSelectedSingle('tone').split(' —')[0].split(' &')[0];
+    const errorStyle = getSelectedSingle('errors').split(' —')[0];
+    const comm = getSelected('comm');
+    const brainType = getBrainType();
+
+    document.getElementById('bc-name').textContent = name + "'s AI Brain Card";
+    document.getElementById('bc-role').textContent = role;
+    document.getElementById('bc-type').textContent = brainType;
+    document.getElementById('bc-tone').textContent = tone;
+    document.getElementById('bc-errors').textContent = errorStyle.length > 20 ? errorStyle.substring(0, 18) + '...' : errorStyle;
+
+    const tagsHtml = comm.map(c => '<span class="bc-tag">' + c + '</span>').join('');
+    document.getElementById('bc-tags').innerHTML = tagsHtml;
+
+    document.getElementById('brain-card-area').classList.add('visible');
+}
+
+function shareBrainCard() {
+    const name = document.getElementById('userName').value.trim() || 'Vibe Coder';
+    const brainType = getBrainType();
+    const tone = getSelectedSingle('tone').split(' —')[0].split(' &')[0];
+    const text = `🧠 My AI Brain Card\n\n👤 ${name}\n🎯 Brain Type: ${brainType}\n💬 Tone: ${tone}\n🚀 First Build: ~20 minutes\n\nAI doesn't need you to code. It needs you to think.\n\n#VibeCoding #ThePowerBehindAI`;
+    navigator.clipboard.writeText(text).then(() => {
+        const toast = document.getElementById('toast');
+        toast.textContent = '🧠 Brain Card copied! Share it on LinkedIn!';
+        toast.classList.add('show');
+        setTimeout(() => toast.classList.remove('show'), 3000);
+    });
+}
+
+// Hook into existing generate
+const origGenerate = generateOutput;
+generateOutput = function() {
+    origGenerate();
+    updateBrainCard();
+};
+
+// ===== 20-MINUTE CHALLENGE =====
+let challengeInterval = null;
+let challengeSeconds = 1200;
+let challengeRunning = false;
+let challengeChecks = [false, false, false, false, false];
+
+function startChallenge() {
+    if (challengeRunning) return;
+    challengeRunning = true;
+    challengeSeconds = 1200;
+    challengeChecks = [false, false, false, false, false];
+    for (let i = 1; i <= 5; i++) {
+        document.getElementById('cs-' + i).classList.remove('done', 'active');
+    }
+    document.getElementById('cs-1').classList.add('active');
+    document.getElementById('challenge-start-btn').textContent = '🏃 Challenge in progress...';
+    document.getElementById('challenge-start-btn').style.background = '#585b70';
+    document.getElementById('challenge-status').textContent = 'Timer running! Click each step as you complete it.';
+
+    challengeInterval = setInterval(() => {
+        challengeSeconds--;
+        const m = Math.floor(challengeSeconds / 60);
+        const s = challengeSeconds % 60;
+        document.getElementById('challenge-timer').textContent = 
+            String(m).padStart(2, '0') + ':' + String(s).padStart(2, '0');
+        
+        if (challengeSeconds <= 0) {
+            clearInterval(challengeInterval);
+            document.getElementById('challenge-timer').textContent = "Time's up! But keep going! 💪";
+        }
+    }, 1000);
+}
+
+function toggleChallenge(step) {
+    if (!challengeRunning) return;
+    const el = document.getElementById('cs-' + step);
+    challengeChecks[step - 1] = true;
+    el.classList.add('done');
+    el.classList.remove('active');
+    
+    // Activate next unchecked step
+    for (let i = 1; i <= 5; i++) {
+        if (!challengeChecks[i - 1]) {
+            document.getElementById('cs-' + i).classList.add('active');
+            break;
+        }
+    }
+    
+    // Check if all done
+    if (challengeChecks.every(c => c)) {
+        clearInterval(challengeInterval);
+        const elapsed = 1200 - challengeSeconds;
+        const m = Math.floor(elapsed / 60);
+        const s = elapsed % 60;
+        const timeStr = m + ' min ' + s + ' sec';
+        
+        document.getElementById('challenge-status').innerHTML = '<strong style="color:#16a34a; font-size: 1.2em;">🎉 Challenge complete in ' + timeStr + '!</strong>';
+        document.getElementById('confetti-time').textContent = 'Time: ' + timeStr;
+        document.getElementById('confetti-share-time').textContent = timeStr;
+        document.getElementById('confetti-overlay').classList.add('show');
+        document.getElementById('challenge-start-btn').textContent = '✅ Challenge Complete!';
+        document.getElementById('challenge-start-btn').style.background = '#16a34a';
+    }
+}
+
+function copyAchievement() {
+    const time = document.getElementById('confetti-share-time').textContent;
+    const text = "🏆 I built my first page with zero coding experience!\n⏱️ " + time + " | Tool: VS Code + GitHub Copilot\n\nAI didn't write this for me. My brain powered it.\n\n#VibeCoding #ThePowerBehindAI";
+    navigator.clipboard.writeText(text).then(() => {
+        const toast = document.getElementById('toast');
+        toast.textContent = '🏆 Achievement copied! Go share your win!';
+        toast.classList.add('show');
+        setTimeout(() => toast.classList.remove('show'), 3000);
+    });
+}
+</script>
+
+</body>
+</html>
