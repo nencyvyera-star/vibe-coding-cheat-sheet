@@ -850,6 +850,64 @@ fun and colorful.</code>
         </div>
     </div>
 
+    <!-- ===== WHERE YOUR FILES LIVE ===== -->
+    <div class="section">
+        <h2>📁 Where Your Files Live (Important!)</h2>
+        <p style="margin-bottom: 16px;">This is the one thing that confuses most beginners. Here's how VS Code sees your work:</p>
+
+        <div class="callout" style="margin-bottom: 16px;">
+            <div class="callout-emoji">🔑</div>
+            <div class="callout-text">
+                <strong>VS Code can only see files inside the folder you opened.</strong><br>
+                Think of it like a desk. When you open a folder in VS Code, everything on that desk is visible to you AND to Copilot. Files outside that folder? Invisible.
+            </div>
+        </div>
+
+        <h3>How it works behind the scenes</h3>
+        <div class="step">
+            <div class="step-number">1</div>
+            <div class="step-content">
+                <strong>You create a folder on your computer</strong>
+                <span>Example: <code style="color:var(--success);">C:\Projects\my-first-build</code> on Windows or <code style="color:var(--success);">~/Projects/my-first-build</code> on Mac. This is your project's home.</span>
+            </div>
+        </div>
+        <div class="step">
+            <div class="step-number">2</div>
+            <div class="step-content">
+                <strong>You open that folder in VS Code</strong>
+                <span>File → Open Folder → pick your folder. Now VS Code is "inside" that folder. Everything you create or save goes there.</span>
+            </div>
+        </div>
+        <div class="step">
+            <div class="step-number">3</div>
+            <div class="step-content">
+                <strong>Want Copilot to use your data? Put it in the folder.</strong>
+                <span>If you have a spreadsheet, a document, or any file you want Copilot to work with, drag it into that same folder. If it's not in the folder, Copilot can't see it.</span>
+            </div>
+        </div>
+
+        <div class="callout tip">
+            <div class="callout-emoji">💡</div>
+            <div class="callout-text">
+                <strong>Why this matters for peace of mind:</strong><br>
+                <ul style="margin-top: 8px; padding-left: 20px; color: var(--text-muted);">
+                    <li>Your files stay exactly where you put them. VS Code doesn't move or copy anything.</li>
+                    <li>Nothing leaves your computer unless YOU choose to share it (like pushing to GitHub).</li>
+                    <li>Copilot reads your files to help you, but your code stays on your machine.</li>
+                    <li>You can close VS Code anytime and everything is still in that folder, safe and sound.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="callout warning">
+            <div class="callout-emoji">⚠️</div>
+            <div class="callout-text">
+                <strong>Quick tip: use a local folder, not a cloud folder.</strong><br>
+                Cloud-synced folders (like OneDrive or Google Drive) can cause issues with coding projects. Create your project folder directly on your computer's hard drive for the smoothest experience.
+            </div>
+        </div>
+    </div>
+
     <!-- ===== STYLE BUILDER ===== -->
     <div class="section builder" id="style-builder">
         <h2>Build Your AI Style Profile</h2>
